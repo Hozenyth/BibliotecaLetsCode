@@ -12,12 +12,13 @@ namespace BibliotecaLetsCode.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IRepositorio _repositorio;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IRepositorio repositorio)
         {
             _logger = logger;
+            _repositorio = repositorio;
         }
-
         public IActionResult Index()
         {
             return View();
@@ -33,5 +34,24 @@ namespace BibliotecaLetsCode.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Emprestar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Emprestar(Emprestimo emprestimo)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _repositorio.AdicionaEmprestimo(emprestimo);
+                return RedirectToAction("Index");
+            }
+
+            return View(emprestimo);
+        }
+
     }
 }

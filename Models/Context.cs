@@ -11,6 +11,7 @@ namespace BibliotecaLetsCode.Models
         public DbSet<Categoria> Categorias { get; set; } //Uma tabela chamada Categorias
 
         public DbSet<Livro> Livros { get; set; }
+        public DbSet<Emprestimo> Emprestimos { get; set; }
 
 
 

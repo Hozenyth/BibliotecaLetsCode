@@ -26,6 +26,8 @@ namespace BibliotecaLetsCode
         {
             services.AddControllersWithViews();
             services.AddDbContext<Context>();
+
+            services.AddScoped<IRepositorio, Repositorio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
