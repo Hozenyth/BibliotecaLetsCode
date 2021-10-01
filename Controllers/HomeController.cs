@@ -45,45 +45,31 @@ namespace BibliotecaLetsCode.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        // GET: Emprestar/Create
         public IActionResult Emprestar()
         {
-           
+            ViewData["LivroId"] = new SelectList(_context.Livros, "Id", "Nome");
             return View();
         }
 
+        // POST: Livros/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public IActionResult Emprestar(Emprestimo emprestimo)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id, Nome, Telefone, Confirmado, LivroId")] Emprestimo emprestimo)
         {
-
-          
-
             if (ModelState.IsValid)
             {
-                _repositorio.AdicionaEmprestimo(emprestimo);
-                return RedirectToAction("Index");
+                _context.Add(emprestimo);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-
+            ViewData["CategoriaId"] = new SelectList(_context.Emprestimos, "Id", "Nome", emprestimo.LivroId);
             return View(emprestimo);
         }
 
-        public IActionResult Emprestados()
-        {
-            var viewModel = new EmprestadosViewModel()
-            {
-                Emprestados = _repositorio.Emprestimos,
-                Search = string.Empty
-            };
 
-            return View(viewModel);
-        }
-
-        [HttpPost]
-        public IActionResult Confirmados(EmprestadosViewModel viewModel)
-        {
-           // viewModel.Confirmados = _repositorio.Confirmacoes;
-
-            return View(viewModel);
-        }
 
 
 
