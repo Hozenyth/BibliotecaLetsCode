@@ -21,7 +21,7 @@
 <div>
    <span> <strong> Nome Cliente: </strong><span class="@cssClass @cssConfirmacao">@emprestimo.Nome </span></span> 
     <span><strong>Livro Id: </strong><span class="@cssClass @cssConfirmacao">@emprestimo.LivroId</span></span>
-    <a asp-action="Edicao" asp-controller="Home" asp-route-Id="@emprestimo.Id">Editar</a>
-    <a asp-action="Remocao" asp-controller="Home" asp-route-Id="@emprestimo.Id">Remover</a>
+    <a asp-action="Editar" asp-controller="Home" asp-route-Id="@emprestimo.Id">Editar</a>
+    <a asp-action="Deletar" asp-controller="Home" asp-route-Id="@emprestimo.Id">Deletar</a>
 </div>
 }

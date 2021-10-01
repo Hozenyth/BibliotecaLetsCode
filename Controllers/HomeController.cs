@@ -87,24 +87,94 @@ namespace BibliotecaLetsCode.Controllers
             return View(viewModel);
         }
 
-        public IActionResult Editar(int id)
+        // GET: Livros/Edit/5
+        public async Task<IActionResult> Editar(int? id)
         {
-            var editando = _context.Emprestimos.FirstOrDefault(x => x.Id == id);
-            if (editando == null)
-                return RedirectToAction("Emprestados");
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            return View(editando);
+            var emprestimo = await _context.Emprestimos.FindAsync(id);
+            if (emprestimo == null)
+            {
+                return NotFound();
+            }
+            ViewData["LivroId"] = new SelectList(_context.Livros, "Id", "Nome");
+            return View(emprestimo);
         }
 
+        // POST: Editar/Edit/5
+       
         [HttpPost]
-        public IActionResult Editar(Emprestimo emprestimo)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Editar(int id, [Bind("Id, Nome, Telefone, Confirmado, LivroId")] Emprestimo emprestimo)
         {
-            _context.Update(emprestimo);
+            if (id != emprestimo.Id)
+            {
+                return NotFound();
+            }
 
-            return RedirectToAction("Emprestados");
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(emprestimo);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!EmprestimoExists(emprestimo.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["LivroId"] = new SelectList(_context.Emprestimos, "Id", "Nome", emprestimo.LivroId);
+            return View(emprestimo);
+        }
+      
+      
+        private bool EmprestimoExists(int id)
+        {
+            return _context.Emprestimos.Any(e => e.Id == id);
         }
 
 
+        // GET: Deletar/Delete/5
+        public async Task<IActionResult> Deletar(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var emprestimo = await _context.Emprestimos
+                .Include(p => p.Livro)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (emprestimo == null)
+            {
+                return NotFound();
+            }
+
+            return View(emprestimo);
+        }
+
+        // POST: Deletar/Delete/5
+        [HttpPost, ActionName("Deletar")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var emprestimo = await _context.Emprestimos.FindAsync(id);
+            _context.Emprestimos.Remove(emprestimo);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
 
 
 
