@@ -52,12 +52,11 @@ namespace BibliotecaLetsCode.Controllers
             return View();
         }
 
-        // POST: Livros/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Emprestar/Create
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id, Nome, Telefone, Confirmado, LivroId")] Emprestimo emprestimo)
+        public async Task<IActionResult> Emprestar([Bind("Id, Nome, Telefone, Confirmado, LivroId")] Emprestimo emprestimo)
         {
             if (ModelState.IsValid)
             {
@@ -67,6 +66,42 @@ namespace BibliotecaLetsCode.Controllers
             }
             ViewData["CategoriaId"] = new SelectList(_context.Emprestimos, "Id", "Nome", emprestimo.LivroId);
             return View(emprestimo);
+        }
+
+        public IActionResult Emprestados()
+        {
+            var viewModel = new EmprestadosViewModel()
+            {
+                Emprestados = _context.Emprestimos,
+                Search = string.Empty
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Emprestados(EmprestadosViewModel viewModel)
+        {
+            viewModel.Emprestados = _context.Emprestimos;
+
+            return View(viewModel);
+        }
+
+        public IActionResult Editar(int id)
+        {
+            var editando = _context.Emprestimos.FirstOrDefault(x => x.Id == id);
+            if (editando == null)
+                return RedirectToAction("Emprestados");
+
+            return View(editando);
+        }
+
+        [HttpPost]
+        public IActionResult Editar(Emprestimo emprestimo)
+        {
+            _context.Update(emprestimo);
+
+            return RedirectToAction("Emprestados");
         }
 
 

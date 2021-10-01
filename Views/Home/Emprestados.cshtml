@@ -1,1 +1,27 @@
-﻿
+﻿@model BibliotecaLetsCode.ViewModels.EmprestadosViewModel
+
+@{
+    ViewData["Title"] = "Emprestados";
+}
+
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Search"></label>
+        <input asp-for="Search" />
+        <input type="submit" class="btn btn-outline-primary" />
+    </div>
+</form>
+
+@foreach (var emprestimo in Model.Emprestados)
+{
+    var cssClass = !string.IsNullOrWhiteSpace(Model.Search) && emprestimo.Nome.Contains(Model.Search, StringComparison.InvariantCultureIgnoreCase) ? "text-info" : "";
+    var cssConfirmacao = emprestimo.Confirmado == true ? "text-primary" : "text-danger";
+
+<div>
+   <span> <strong> Nome Cliente: </strong><span class="@cssClass @cssConfirmacao">@emprestimo.Nome </span></span> 
+    <span><strong>Livro Id: </strong><span class="@cssClass @cssConfirmacao">@emprestimo.LivroId</span></span>
+    <a asp-action="Edicao" asp-controller="Home" asp-route-Id="@emprestimo.Id">Editar</a>
+    <a asp-action="Remocao" asp-controller="Home" asp-route-Id="@emprestimo.Id">Remover</a>
+</div>
+}
