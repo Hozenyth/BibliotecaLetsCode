@@ -1,5 +1,8 @@
 ﻿using BibliotecaLetsCode.Models;
+using BibliotecaLetsCode.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -13,15 +16,22 @@ namespace BibliotecaLetsCode.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IRepositorio _repositorio;
+       
+        private readonly Context _context;
 
-        public HomeController(ILogger<HomeController> logger, IRepositorio repositorio)
+
+        public HomeController(ILogger<HomeController> logger, IRepositorio repositorio, Context context)
         {
             _logger = logger;
             _repositorio = repositorio;
+            _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            
+
+            var context = _context.Emprestimos.Include(p => p.Livro);
+            return View(await context.ToListAsync());
         }
 
         public IActionResult Privacy()
@@ -37,12 +47,15 @@ namespace BibliotecaLetsCode.Controllers
 
         public IActionResult Emprestar()
         {
+           
             return View();
         }
 
         [HttpPost]
         public IActionResult Emprestar(Emprestimo emprestimo)
         {
+
+          
 
             if (ModelState.IsValid)
             {
@@ -52,6 +65,27 @@ namespace BibliotecaLetsCode.Controllers
 
             return View(emprestimo);
         }
+
+        public IActionResult Emprestados()
+        {
+            var viewModel = new EmprestadosViewModel()
+            {
+                Emprestados = _repositorio.Emprestimos,
+                Search = string.Empty
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Confirmados(EmprestadosViewModel viewModel)
+        {
+           // viewModel.Confirmados = _repositorio.Confirmacoes;
+
+            return View(viewModel);
+        }
+
+
 
     }
 }
