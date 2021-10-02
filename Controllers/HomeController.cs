@@ -72,7 +72,7 @@ namespace BibliotecaLetsCode.Controllers
         {
             var viewModel = new EmprestadosViewModel()
             {
-                Emprestados = _context.Emprestimos,
+                Emprestados = _context.Emprestimos.Include(x=> x.Livro).Include(x=> x.Nome),
                 Search = string.Empty
             };
 
@@ -171,7 +171,7 @@ namespace BibliotecaLetsCode.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var emprestimo = await _context.Emprestimos.FindAsync(id);
-            _context.Emprestimos.Remove(emprestimo);
+            _context.Emprestimos.Update(emprestimo);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

@@ -20,6 +20,9 @@ namespace BibliotecaLetsCode.Models
         [Required(ErrorMessage = "A confirmação de empréstimo é obrigatória")]
         public bool? Confirmado { get; set; }
 
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime DataDevolucao { get; set; }
+
         public int LivroId { get; set; }
 
         [DisplayName("Selecione o nome do livro")]

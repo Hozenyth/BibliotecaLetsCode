@@ -4,14 +4,16 @@ using BibliotecaLetsCode.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BibliotecaLetsCode.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20211002005330_DataDevolucao")]
+    partial class DataDevolucao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,23 +35,6 @@ namespace BibliotecaLetsCode.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categorias");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Descricao = "A"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Descricao = "B"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Descricao = "C"
-                        });
                 });
 
             modelBuilder.Entity("BibliotecaLetsCode.Models.Emprestimo", b =>
@@ -114,35 +99,6 @@ namespace BibliotecaLetsCode.Migrations
                     b.HasIndex("CategoriaId");
 
                     b.ToTable("Livros");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Ano = 2021,
-                            Autor = "B",
-                            CategoriaId = 1,
-                            Editora = "C",
-                            Nome = "A"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Ano = 2022,
-                            Autor = "BB",
-                            CategoriaId = 2,
-                            Editora = "CB",
-                            Nome = "AB"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Ano = 2023,
-                            Autor = "BC",
-                            CategoriaId = 3,
-                            Editora = "CC",
-                            Nome = "AC"
-                        });
                 });
 
             modelBuilder.Entity("BibliotecaLetsCode.Models.Emprestimo", b =>
