@@ -19,9 +19,10 @@
     var cssConfirmacao = emprestimo.Confirmado == true ? "text-primary" : "text-danger";
 
 <div>
-   <span> <strong> Nome Cliente: </strong><span class="@cssClass @cssConfirmacao">@emprestimo.Nome </span></span> 
+    <span> <strong> Nome Cliente: </strong><span class="@cssClass @cssConfirmacao">@emprestimo.Nome </span></span>
     <span><strong>Livro Id: </strong><span class="@cssClass @cssConfirmacao">@emprestimo.LivroId</span></span>
+    <span> <strong> Data Devolução: </strong><span class="@cssClass @cssConfirmacao">@emprestimo.DataDevolucao </span></span>
     <a asp-action="Editar" asp-controller="Home" asp-route-Id="@emprestimo.Id">Editar</a>
-    <a asp-action="Deletar" asp-controller="Home" asp-route-Id="@emprestimo.Id">Deletar</a>
+    <a asp-action="Deletar" asp-controller="Home" asp-route-Id="@emprestimo.Id">Devolver</a>
 </div>
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BibliotecaLetsCode.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20211002005330_DataDevolucao")]
-    partial class DataDevolucao
+    [Migration("20211002212611_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,55 @@ namespace BibliotecaLetsCode.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categorias");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Descricao = "A"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Descricao = "B"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Descricao = "C"
+                        });
+                });
+
+            modelBuilder.Entity("BibliotecaLetsCode.Models.Cliente", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Endereço")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Idade")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoriaId");
+
+                    b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("BibliotecaLetsCode.Models.Emprestimo", b =>
@@ -55,11 +104,9 @@ namespace BibliotecaLetsCode.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -99,6 +146,46 @@ namespace BibliotecaLetsCode.Migrations
                     b.HasIndex("CategoriaId");
 
                     b.ToTable("Livros");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Ano = 2021,
+                            Autor = "B",
+                            CategoriaId = 1,
+                            Editora = "C",
+                            Nome = "A"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Ano = 2022,
+                            Autor = "BB",
+                            CategoriaId = 2,
+                            Editora = "CB",
+                            Nome = "AB"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Ano = 2023,
+                            Autor = "BC",
+                            CategoriaId = 3,
+                            Editora = "CC",
+                            Nome = "AC"
+                        });
+                });
+
+            modelBuilder.Entity("BibliotecaLetsCode.Models.Cliente", b =>
+                {
+                    b.HasOne("BibliotecaLetsCode.Models.Categoria", "Categoria")
+                        .WithMany()
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
                 });
 
             modelBuilder.Entity("BibliotecaLetsCode.Models.Emprestimo", b =>

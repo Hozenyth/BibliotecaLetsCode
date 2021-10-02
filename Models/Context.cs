@@ -12,6 +12,7 @@ namespace BibliotecaLetsCode.Models
 
         public DbSet<Livro> Livros { get; set; }
         public DbSet<Emprestimo> Emprestimos { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) // Ja insere dados no banco ao inicar

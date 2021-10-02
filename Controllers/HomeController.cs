@@ -72,7 +72,7 @@ namespace BibliotecaLetsCode.Controllers
         {
             var viewModel = new EmprestadosViewModel()
             {
-                Emprestados = _context.Emprestimos.Include(x=> x.Livro).Include(x=> x.Nome),
+                Emprestados = _context.Emprestimos.Include(x=> x.Livro),
                 Search = string.Empty
             };
 
@@ -154,26 +154,46 @@ namespace BibliotecaLetsCode.Controllers
                 return NotFound();
             }
 
-            var emprestimo = await _context.Emprestimos
-                .Include(p => p.Livro)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var emprestimo = await _context.Emprestimos.FindAsync(id);
             if (emprestimo == null)
             {
                 return NotFound();
             }
-
+            ViewData["LivroId"] = new SelectList(_context.Livros, "Id", "Nome");
             return View(emprestimo);
         }
 
-        // POST: Deletar/Delete/5
-        [HttpPost, ActionName("Deletar")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Deletar(int id, [Bind("Id, Nome, Telefone, Confirmado, DataDevolucao, LivroId")] Emprestimo emprestimo)
         {
-            var emprestimo = await _context.Emprestimos.FindAsync(id);
-            _context.Emprestimos.Update(emprestimo);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (id != emprestimo.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(emprestimo);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!EmprestimoExists(emprestimo.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["LivroId"] = new SelectList(_context.Emprestimos, "Id", "Nome", emprestimo.LivroId);
+            return View(emprestimo);
         }
 
 
