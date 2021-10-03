@@ -20,7 +20,7 @@ namespace BibliotecaLetsCode.Models
         public bool? Confirmado { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime DataDevolucao { get; set; }
+        public  DateTime DataDevolucao { get; set; }
 
         public int LivroId { get; set; }
 

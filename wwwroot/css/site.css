@@ -2,70 +2,150 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    
+}
+.navbar-collapse {
+    background: #d4cfaa;
 }
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #0366d6;
+    
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+    
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
+
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background: url(https://media.istockphoto.com/photos/brown-recycled-paper-crumpled-texture-background-cream-old-vintage-picture-id1278709873?b=1&k=20&m=1278709873&s=170667a&w=0&h=I7KaFvQN4G7p6EjkFNfKDr-9RUsNUPV8vTVhCSdG_pQ=) no-repeat;
+    height: 1000px;
+    background-size: 100%;
+    font-family: Bradley Hand, cursive;
 }
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+/* Sticky Carousel styles
+-------------------------------------------------- */
+.carousel-inner > .carousel-item > img {
+    width: 400px;
+    height: 400px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.carousel-control-next:hover {
+    background: none;
+}
+
+.carousel-control-prev:hover {
+    background: none;
+}
+
+h1 {
+    font-family: Bradley Hand, cursive;
+    font-weight: 900;
+    margin-bottom: 40px;
+    color: black;
+}
+
+p {
+    font-weight: 900;
+    margin-bottom: 50px;
+    font-size: 20px;
+}
+
+.Links {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+    a:hover {
+        text-decoration: none;
+        cursor: pointer;
+        color: white;
+        background: #888044;
+    }
+
+
+
+.link {
+    text-transform: uppercase;
+    background: #d4cfaa;
+    color: floralwhite;
+    padding: 5px 0px 0 5px;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.link2 {
+    text-transform: uppercase;
+    background: #d4cfaa;
+    color: black;
+    text-align: center;
+    margin-top: 10px;
+
 }
