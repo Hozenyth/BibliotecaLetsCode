@@ -8,9 +8,14 @@ livro, cadastrar um livro e um cliente, editar, deletar e devolver um livro empr
 de domínio sem ter que se preocupar com as tabelas e colunas de banco de dados subjacentes em que esses dados são armazenados.</p>
 
 
-🚀 Tecnologias Utilizadas
-Asp .NET Core MVC
-Entity FrameWork
-HTML5
-CSS3
-Bootsrap 4.0
+<h2>🚀</g-emoji> Tecnologias</h2>
+
+<ul>
+<li> Asp .NET Core MVC </li>
+<li> Entity FrameWork </li>
+<li> HTML5 </li>
+<li> CSS3 </li>
+<li> JQUERY (com  <a href="https://owlcarousel2.github.io/OwlCarousel2/">Owl Carousel 2</a>) </li>
+ <li> Bootsrap 4.0 </li>
+</ul>
+
