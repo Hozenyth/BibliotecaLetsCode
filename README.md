@@ -7,7 +7,7 @@ livro, cadastrar um livro e um cliente, editar, deletar e devolver um livro empr
 <p>Também neste projeto utlizamos o Entity FrameWork que é um ORM (Mapeador Relacional de Objeto) que permite que os desenvolvedores .NET trabalhem com um banco de dados usando objetos .NET, neste projeto foi utilizado o banco de dados SQL. O Entity Framework permite que os desenvolvedores trabalhem com dados na forma de objetos e propriedades específicos
 de domínio sem ter que se preocupar com as tabelas e colunas de banco de dados subjacentes em que esses dados são armazenados.</p>
 
-
+ <img src="https://github.com/Hozenyth/BibliotecaLetsCode/blob/master/wwwroot/imagem/ezgif.com-gif-maker%20(2).gif" alt="ezgif.com-gif-maker (2).gif">
 <h2>🚀</g-emoji> Tecnologias</h2>
 
 <ul>
