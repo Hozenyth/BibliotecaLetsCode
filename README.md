@@ -16,6 +16,6 @@ de domínio sem ter que se preocupar com as tabelas e colunas de banco de dados 
 <li> HTML5 </li>
 <li> CSS3 </li>
 <li> JQUERY (com  <a href="https://owlcarousel2.github.io/OwlCarousel2/">Owl Carousel 2</a>) </li>
- <li> Bootsrap 4.0 </li>
+ <li> Bootstrap 4.0 </li>
 </ul>
 
