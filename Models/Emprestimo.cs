@@ -21,7 +21,8 @@ namespace BibliotecaLetsCode.Models
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public  DateTime DataDevolucao { get; set; }
-
+       
+        [DisplayName("Selecione o Livro")]
         public int LivroId { get; set; }
 
         [DisplayName("Selecione o nome do livro")]

@@ -36,28 +36,56 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Autor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Editora)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ano)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria.Descricao)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Autor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Editora)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ano)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria.Descricao)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
+
+<div class="carrosel-filmes"></div>
+<div class="owl-carousel owl-theme ">
+    <div class="item zoom">
+        <img class="box-filme" src="~/imagem/Livro1.png" alt="" srcset="">
+    </div>
+    <div class="item zoom">
+        <img class="box-filme" src="~/imagem/Livro2.png" alt="" srcset="">
+    </div>
+    <div class="item zoom">
+        <img class="box-filme" src="~/imagem/Livro3.png" alt="" srcset="">
+    </div>
+    <div class="item zoom">
+        <img class="box-filme" src="~/imagem/Livro4.png" alt="" srcset="">
+    </div>
+    <div class="item zoom">
+        <img class="box-filme" src="~/imagem/Livro5.png" alt="" srcset="">
+    </div>
+    <div class="item zoom">
+        <img class="box-filme" src="~/imagem/Livro6.png" alt="" srcset="">
+    </div>
+    <div class="item zoom">
+        <img class="box-filme" src="~/imagem/Livro7.png" alt="" srcset="">
+    </div>
+
+
+</div>
+</div>

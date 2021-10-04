@@ -24,6 +24,7 @@ namespace BibliotecaLetsCode.Models
         public int Idade { get; set; }
        
         [Required(ErrorMessage = "A categoria de livro favorito é obrigatório")]
+        [DisplayName("Categoria favorita")]
         public int CategoriaId { get; set; }
         [DisplayName("Categoria favorita")]
         public Categoria Categoria { get; set; }
