@@ -20,8 +20,8 @@
 
 <div>
     <span> <strong> Nome Cliente: </strong><span class="@cssClass @cssConfirmacao">@emprestimo.Nome </span></span>
-    <span><strong>Livro Id: </strong><span class="@cssClass @cssConfirmacao">@emprestimo.LivroId</span></span>
-    <span> <strong> Data Devolução: </strong><span class="@cssClass @cssConfirmacao">@emprestimo.DataDevolucao </span></span>
+    <span><strong>Livro Id: </strong><span class="@cssClass @cssConfirmacao">@emprestimo.Livro.Nome</span></span>
+    <span> <strong> Data Devolução: </strong><span class="@cssClass @cssConfirmacao">@emprestimo.DataDevolucao.ToString("dd/MM/yyyy")</span></span>
     <a asp-action="Editar" asp-controller="Home" asp-route-Id="@emprestimo.Id">Editar</a>
     <a asp-action="Deletar" asp-controller="Home" asp-route-Id="@emprestimo.Id">Devolver</a>
 </div>
